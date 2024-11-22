@@ -1,6 +1,7 @@
 package com.rohan.academics.controller;
 
 import com.rohan.academics.records.CreateUserRequest;
+import com.rohan.academics.records.LoginRequest;
 import com.rohan.academics.service.AdminService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +20,8 @@ public class AdminController {
     private final AdminService adminservice;
 
     @PostMapping("auth/admin/login")
-    public ResponseEntity<String> login(@RequestBody Map<String, String> requestBody){
-        String email = requestBody.get("email");
-        String password = requestBody.get("password");
-        return ResponseEntity.ok(adminservice.login(email,password));
+    public ResponseEntity<String> login(@RequestBody @Valid LoginRequest request){
+        return ResponseEntity.ok(adminservice.login(request));
     }
 
     @PostMapping("create-user")

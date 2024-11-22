@@ -2,6 +2,7 @@ package com.rohan.academics.service;
 
 import com.rohan.academics.entity.User;
 import com.rohan.academics.records.CreateUserRequest;
+import com.rohan.academics.records.LoginRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.rohan.academics.repo.CustomerRepo;
@@ -16,15 +17,15 @@ public class AdminService {
     private final EncryptionService encryptionService;
 
 
-    public String login(String email, String password) {
-        User user=getUser(email);
+    public String login(LoginRequest request) {
+        User user=getUser(request.email());
         if(user== null){
             return "User not found";
         }
         if(!user.getRole().equals(("admin"))){
             return "Only Admin can Login";
         }
-        if(!encryptionService.validates(password, user.getPassword())) {
+        if(!encryptionService.validates(request.password(), user.getPassword())) {
             return "Wrong Password or Email";
         }
 
