@@ -12,10 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/domain")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:3000")
 public class DomainController {
     private final DomainService domainservice;
 
-    @PostMapping
+    @PostMapping("/createdomain")
     public ResponseEntity<String> createDomain(@RequestBody CreateDomainRequest request) {
         try {
             return ResponseEntity.ok(domainservice.createDomain(request));
@@ -24,7 +25,7 @@ public class DomainController {
         }
     }
 
-    @PutMapping("/{domainId}")
+    @PutMapping("modify/{domainId}")
     public ResponseEntity<String> modifyDomain(
             @PathVariable int domainId,
             @RequestBody CreateDomainRequest request) {
@@ -54,6 +55,17 @@ public class DomainController {
             return ResponseEntity.ok(domains);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(null);
+        }
+    }
+
+    @DeleteMapping("/{domainId}")
+    public ResponseEntity<String>deleteDomain(@PathVariable int domainId){
+        try{
+            String op=domainservice.deleteDomain(domainId);
+            return ResponseEntity.ok(op);
+        }
+        catch(Exception e){
+            return ResponseEntity.status(404).body(null);
         }
     }
 }

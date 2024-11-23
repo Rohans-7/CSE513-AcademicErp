@@ -75,4 +75,13 @@ public class DomainService {
             throw new RuntimeException("Failed to retrieve all domains: " + e.getMessage(), e);
         }
     }
+
+    public String deleteDomain(int domainId){
+        try {
+            domainrepo.deleteById(domainId);
+            return "domain deleted successfully with ID: " + domainId;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Domain with ID " + domainId + " not found");
+        }
+    }
 }
