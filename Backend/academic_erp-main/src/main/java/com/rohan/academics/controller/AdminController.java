@@ -1,14 +1,12 @@
 package com.rohan.academics.controller;
 
-import com.rohan.academics.records.CreateUserRequest;
-import com.rohan.academics.records.LoginRequest;
+import com.rohan.academics.dto.CreateUserRequest;
+import com.rohan.academics.dto.LoginRequest;
 import com.rohan.academics.service.AdminService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/")

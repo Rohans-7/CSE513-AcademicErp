@@ -1,7 +1,7 @@
 package com.rohan.academics.controller;
 
 import com.rohan.academics.entity.Domain;
-import com.rohan.academics.records.CreateDomainRequest;
+import com.rohan.academics.dto.CreateDomainRequest;
 import com.rohan.academics.service.DomainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

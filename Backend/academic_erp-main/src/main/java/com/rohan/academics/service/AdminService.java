@@ -1,8 +1,8 @@
 package com.rohan.academics.service;
 
 import com.rohan.academics.entity.User;
-import com.rohan.academics.records.CreateUserRequest;
-import com.rohan.academics.records.LoginRequest;
+import com.rohan.academics.dto.CreateUserRequest;
+import com.rohan.academics.dto.LoginRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.rohan.academics.repo.CustomerRepo;

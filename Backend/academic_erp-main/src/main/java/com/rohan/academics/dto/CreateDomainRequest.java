@@ -1,4 +1,4 @@
-package com.rohan.academics.records;
+package com.rohan.academics.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
