@@ -4,21 +4,19 @@ import com.rohan.academics.entity.Student;
 import com.rohan.academics.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/student")
+@RequestMapping("api/v1/student/")
+@CrossOrigin
 public class StudentController {
 
     private final StudentService studentService;
 
-    @GetMapping("/getstudentsbydomain/{domainId}")
+    @GetMapping("getstudentsbydomain/{domainId}")
     public ResponseEntity<List<Student>> getStudentsByDomain(@PathVariable int domainId) {
         try {
             List<Student> students = studentService.getStudentsByDomain(domainId);

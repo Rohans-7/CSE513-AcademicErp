@@ -1,8 +1,11 @@
 package com.rohan.academics.service;
 
+import com.rohan.academics.dto.LoginResponse;
 import com.rohan.academics.entity.User;
 import com.rohan.academics.dto.CreateUserRequest;
 import com.rohan.academics.dto.LoginRequest;
+import com.rohan.academics.helper.EncryptionService;
+import com.rohan.academics.helper.JWTHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.rohan.academics.repo.CustomerRepo;
@@ -15,21 +18,25 @@ public class AdminService {
 
     private final CustomerRepo customerRepo;
     private final EncryptionService encryptionService;
+    private final JWTHelper jwtHelper;
 
 
-    public String login(LoginRequest request) {
-        User user=getUser(request.email());
-        if(user== null){
-            return "User not found";
-        }
-        if(!user.getRole().equals(("admin"))){
-            return "Only Admin can Login";
-        }
-        if(!encryptionService.validates(request.password(), user.getPassword())) {
-            return "Wrong Password or Email";
+    public LoginResponse login(LoginRequest request) {
+        User user = getUser(request.email());
+        if (user == null) {
+            throw new IllegalArgumentException("User not found");
         }
 
-        return "Done";
+        if (!user.getRole().equals("admin")) {
+            throw new IllegalArgumentException("Only Admin can Login");
+        }
+
+        if (!encryptionService.validates(request.password(), user.getPassword())) {
+            throw new IllegalArgumentException("Wrong Password or Email");
+        }
+
+        String token = jwtHelper.generateToken(request.email());
+        return new LoginResponse(user.getUser_id(), user.getEmail(), user.getRole(), user.getName(),token);
     }
 
     public String createUser(CreateUserRequest request) {

@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin
 public class AdminController {
     private final AdminService adminservice;
 
     @PostMapping("auth/admin/login")
-    public ResponseEntity<String> login(@RequestBody @Valid LoginRequest request){
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request){
         return ResponseEntity.ok(adminservice.login(request));
     }
 

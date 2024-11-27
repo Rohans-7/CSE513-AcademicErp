@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/domain")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin
 public class DomainController {
     private final DomainService domainservice;
 
@@ -25,7 +25,7 @@ public class DomainController {
         }
     }
 
-    @PutMapping("modify/{domainId}")
+    @PutMapping("/modify/{domainId}")
     public ResponseEntity<String> modifyDomain(
             @PathVariable int domainId,
             @RequestBody CreateDomainRequest request) {
