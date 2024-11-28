@@ -26,6 +26,7 @@ export default function AddDomain() {
         //await axios.post("http://localhost:8080/api/v1/domain/createdomain", user);
         const response =await axios.post("http://localhost:8080/api/v1/domain/createdomain", user,{
             headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',

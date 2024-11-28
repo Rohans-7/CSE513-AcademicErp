@@ -4,9 +4,9 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 //import Navbar from './layout/Navbar';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AddDomain from './domains/AddDomain';
-import ModifyDomain from './domains/ModifyDomain';
-import ViewStudents from './domains/ViewStudents';
+import AddDomain from './components/AddDomain';
+import ModifyDomain from './components/ModifyDomain';
+import ViewStudents from './components/ViewStudents';
 import Login from './pages/Login';
 function App() {
   return (
